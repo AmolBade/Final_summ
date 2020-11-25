@@ -47,4 +47,3 @@ with open(file, 'r', encoding='UTF-8') as openfile:
 os.system(file + ".docx")
 os.remove(1.wav)
 os.remove(myfile.txt)
-os.remove(data)
