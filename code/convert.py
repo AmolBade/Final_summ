@@ -2,11 +2,11 @@ import os
 import moviepy.editor
 import speech_recognition as sr
 
-video=moviepy.editor.VideoFileClip('C:\\Users\\DELL\\Downloads\\1_1.mp4')
+video=moviepy.editor.VideoFileClip('/content/Final_summ/code/1_1.mp4')
 
 audio=video.audio
 
-audio.write_audiofile('C:\\Users\\DELL\\OneDrive\\Desktop\\1.wav')
+audio.write_audiofile('/content/Final_summ/code/1.wav')
 
 filename="1.wav"
 
@@ -47,3 +47,4 @@ with open(file, 'r', encoding='UTF-8') as openfile:
 os.system(file + ".docx")
 os.remove(1.wav)
 os.remove(myfile.txt)
+os.remove(data)
