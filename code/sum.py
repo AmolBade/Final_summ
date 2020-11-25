@@ -174,6 +174,7 @@ def get_summary(filename="1.mp4", subtitles="1.srt"):
     """
     video = moviepy.editor.VideoFileClip(filename)
     video_duration = int(video.duration)
+    #Put here 60 to reduce file size
     regions = find_summary_regions(subtitles, video_duration/3, "english")
     summary = create_summary(filename, regions)
     base, ext = os.path.splitext(filename)
