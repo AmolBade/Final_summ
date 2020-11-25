@@ -13,7 +13,8 @@ import chardet
 import nltk
 imageio.plugins.ffmpeg.download()
 nltk.download('punkt')
-
+import moviepy
+import moviepy.editor
 from moviepy.editor import VideoFileClip, concatenate_videoclips
 from sumy.parsers.plaintext import PlaintextParser
 from sumy.nlp.tokenizers import Tokenizer
@@ -102,7 +103,7 @@ def time_regions(regions):
     return sum(starmap(lambda start, end: end - start, regions))
 
 
-def find_summary_regions(srt_filename, duration=30, language="english"):
+def find_summary_regions(srt_filename, duration, language="english"):
     """ Find important sections
 
     Args:
@@ -171,7 +172,9 @@ def get_summary(filename="1.mp4", subtitles="1.srt"):
         True
 
     """
-    regions = find_summary_regions(subtitles, 60, "english")
+    video = moviepy.editor.VideoFileClip(filename)
+    video_duration = int(video.duration)
+    regions = find_summary_regions(subtitles, video_duration/3, "english")
     summary = create_summary(filename, regions)
     base, ext = os.path.splitext(filename)
     output = "{0}_1.mp4".format(base)
@@ -212,7 +215,7 @@ def download_video_srt(subs):
         result = ydl.extract_info("{}".format(url), download=True)
         movie_filename = ydl.prepare_filename(result)
         subtitle_info = result.get("requested_subtitles")
-        subtitle_language = subtitle_info.keys()[0]
+        subtitle_language = list(subtitle_info.keys())[0]
         subtitle_ext = subtitle_info.get(subtitle_language).get("ext")
         subtitle_filename = movie_filename.replace(".mp4", ".%s.%s" %
                                                    (subtitle_language,
