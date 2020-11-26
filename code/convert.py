@@ -44,6 +44,5 @@ with open(file, 'r', encoding='UTF-8') as openfile:
     p.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
     doc.save(file + ".docx")
     
-os.system(file + ".docx")
-os.remove(1.wav)
-os.remove(myfile.txt)
+os.remove('/content/Final_summ/code/1.wav')
+os.remove('/content/Final_summ/code/myfile.txt')
