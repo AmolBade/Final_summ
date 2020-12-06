@@ -32,6 +32,16 @@ styles = doc.styles
 style = styles.add_style('Tahoma', WD_STYLE_TYPE.PARAGRAPH) #Tahoma is the name I set because that's the font I'm gonna use
 style.font.size = Pt(11)
 
+with open('myfile.txt', 'r') as file:
+    data = file.read().replace('\n', '')
+from textblob import TextBlob
+import re
+str=re.findall("[a-zA-Z,.]+",data)
+updated_data=(" ".join(str))
+text_file = open("myfile.txt", "w")
+n = text_file.write(updated_data)
+text_file.close()
+
 file="myfile.txt"
         
 with open(file, 'r', encoding='UTF-8') as openfile:
